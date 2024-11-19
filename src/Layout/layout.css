@@ -1,0 +1,15 @@
+.layout{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    height: 100%;
+    /* overflow: hidden; */
+    // 隐藏滚动条
+    -webkit-overflow-scrolling: touch; // ios滑动流畅
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+    display: none;
+  }
+  

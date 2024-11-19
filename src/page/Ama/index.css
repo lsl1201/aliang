@@ -1,0 +1,131 @@
+.title-h1{
+    font-size: 48px;
+    font-weight: 700;
+}
+.massage{
+    padding-top: 200px;
+    margin-left: 80px;
+    height: 100%;
+    overflow: auto;
+}
+.massage-title{
+    width: 700px;
+}
+.inputDiv{
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 80px;
+    width: 500px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display:flex;
+    align-items: center;
+}
+
+.mssage-avatar{
+    width: 60px;
+    margin-left: 20px;
+}
+.inputDiv>input{
+    width: 90%;
+    height: 100%;
+}
+
+
+.massage-list{
+    display: flex;
+    margin-top: 30px;
+    max-width: 500px;
+}
+.massage-list-avatar{
+    margin-right: 20px;
+}
+.massage-list-name{
+    font-size: 14px;
+    font-weight: 500;
+}
+.massage-list-time{
+    margin-left: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(153, 153, 153);
+}
+.massage-list-message_content{
+    display: flex;
+    position: relative;
+}
+.massage-list-line{
+    position:absolute;
+    top:30px;
+    left: -40px;
+    width: 2px;
+    height: 80%;
+    min-height: 15px;
+    background-color: #eee;
+}
+.massage-list:last-child .massage-list-message_conten .massage-list-line{
+    position:absolute;
+    top:30px;
+    left: -40px;
+    width: 0px;
+    height: 0;
+    min-height: 15px;
+    background-color: #eee;
+}
+
+.commit-list{
+    max-width: 900px;
+    /* display: flex; */
+    margin-top: 50px;
+    margin-left: 0px;
+    text-align: center;
+}
+
+.linksDiv{
+    max-width: 900px;
+    text-align: center;
+}
+.linksContent{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.links-item{
+    margin-top: 20px;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.links-item:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.links-item-Avatar{
+    margin: 20px;
+}
+.links-item-text{
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    // 文字不换行
+    white-space: nowrap; /* 保持文字在一行显示 */  
+    overflow: hidden; /* 超出容器部分隐藏 */  
+    text-overflow: ellipsis; /* 超出部分显示为省略号 */  
+    width: 200px; /* 设置一个宽度限制，根据需要调整 */ 
+}
+.links-item-name{
+    font-size: 18px;
+    text-align: left;
+}
+.links-item-description{
+    font-size: 12px;
+    font-weight: 400;
+    text-align: left;
+}

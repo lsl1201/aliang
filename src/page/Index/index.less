@@ -1,0 +1,101 @@
+.index{
+    margin-left: 80px;
+    padding-top: 190px;
+
+}
+.title{
+    font-size: 40px;
+    font-weight: bold;
+}
+.Designer {
+    position: relative; /* 使伪元素相对于这个元素定位 */
+    border: 1px solid rgb(101, 163, 13);
+    padding: 5px; /* 添加一些内边距以避免内容被伪元素覆盖 */
+    background-color: rgba(0, 0, 0,.07);
+}
+.Designer:hover {
+    text-decoration:  line-through;
+    border-style: dashed solid;
+}
+.Designer::before,
+.Designer::after,
+.Designer > .corner::before,
+.Designer > .corner::after 
+{
+    content: '';
+    position: absolute;
+    width: 10px; /* 正方形的宽度 */
+    height: 10px; /* 正方形的高度 */
+    background-color: #fff; /* 正方形的颜色 */
+    border: 1px solid rgb(101, 163, 13);
+}
+
+.Designer::before {
+    top: -5px; 
+    left: -5px;
+}
+
+.Designer::after {
+    top: -5px;
+    right: -5px;
+}
+.corner{
+    position: relative;
+    width: 100%;
+}
+.Designer > .corner::before {
+    bottom: -10px;
+    left: -10px;
+}
+
+.Designer > .corner::after {
+    bottom: -10px;
+    right: -130px;
+}
+
+.Details{
+    position: relative ;
+}
+.DetailsIcon{
+    position: absolute;
+    transform-origin: 50% 42%; 
+    transition: transform 0.3s ease; /* 添加旋转动画的过渡效果 */
+}
+.DetailsIcon:hover{
+    transform: rotate(180deg);
+}
+.DetailsText{
+    margin-left: 50px;
+}
+
+
+.test{
+    height: 1000px;
+    width: 100px;
+    background-color: red;
+}
+
+.baseStyle{
+    margin: 20px;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+
+}
+.baseStyle-hover{
+    border-radius: 20px;
+    transition: all 0.5s ease;
+    margin: 20px -22px;
+
+}
+
+.indexAbout{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.aboutMoom{
+    margin-left: 80px;
+}

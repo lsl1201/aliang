@@ -1,0 +1,23 @@
+.title-h1{
+    font-size: 48px;
+    font-weight: 700;
+}
+.project{
+    padding-top: 200px;
+    padding-left: 10px;
+    margin-left: 80px;
+    height: 100%;
+    overflow: auto;
+}
+.project-title{
+    width: 700px;
+}
+.project-link{
+    color: #111;
+}
+.project-link:hover{
+    color: rgb(101,163,13);
+}
+.description{
+    color: #999;
+}

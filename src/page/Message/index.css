@@ -1,0 +1,74 @@
+.title-h1{
+    font-size: 48px;
+    font-weight: 700;
+}
+.massage{
+    padding-top: 200px;
+    margin-left: 80px;
+    height: 100%;
+    overflow: auto;
+}
+.massage-title{
+    width: 500px;
+}
+.inputDiv{
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 80px;
+    width: 500px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display:flex;
+    align-items: center;
+}
+.mssage-avatar{
+    width: 60px;
+    margin-left: 20px;
+}
+.inputDiv>input{
+    width: 90%;
+    height: 100%;
+}
+
+
+.massage-list{
+    display: flex;
+    margin-top: 30px;
+    max-width: 500px;
+}
+.massage-list-avatar{
+    margin-right: 20px;
+}
+.massage-list-name{
+    font-size: 14px;
+    font-weight: 500;
+}
+.massage-list-time{
+    margin-left: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(153, 153, 153);
+}
+.massage-list-message_content{
+    display: flex;
+    position: relative;
+}
+.massage-list-line{
+    position:absolute;
+    top:30px;
+    left: -40px;
+    width: 2px;
+    height: 80%;
+    min-height: 15px;
+    background-color: #eee;
+}
+.massage-list:last-child .massage-list-message_conten .massage-list-line{
+    position:absolute;
+    top:30px;
+    left: -40px;
+    width: 0px;
+    height: 0;
+    min-height: 15px;
+    background-color: #eee;
+}

@@ -1,0 +1,27 @@
+.info{
+    width:200px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    text-align: left;
+}
+
+.info-btn{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.info-btn>span{
+    margin-left: 12px;
+    
+}
+.info-btn:hover{
+    background-color: #eee;
+    cursor: pointer;
+}

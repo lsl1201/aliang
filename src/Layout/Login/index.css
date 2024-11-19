@@ -1,0 +1,73 @@
+.login{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999 !important;
+    backdrop-filter: blur(3px); /* 添加磨砂效果 */
+}
+.login-close{
+    display: flex;
+    justify-content: space-between;
+}
+.login-content{
+    width: 400px;
+    background-color: #fff;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.loginMethod{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.login-input{
+    width: 300px;
+    height: 40px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    line-height: 40px;
+    display: flex;
+}
+.login-input-icon{
+    width:20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-input-text{
+    margin-right: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-input:hover{
+    cursor: pointer;
+    background-color: #eee;
+}
+.login-input:hover > div{
+    transition: margin-right .4s ease;
+    margin-right: 0px;
+}
+
+.login-input:hover .RightOutlined{
+    transition: opacity .4s ease;
+    opacity:1;
+}
+.RightOutlined{ 
+    margin-right: "10px";
+    opacity:0 ;
+}
