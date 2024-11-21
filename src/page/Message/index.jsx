@@ -50,14 +50,13 @@ const Message = () => {
                 <span className='title-h1'>欢迎来到我的留言墙。</span>
                 <p>在这里，你可以留下你想对我说的话，或是你的建议，或是你的想法，或是你的批评，或是你的赞美，或是你的鼓励，或是你的吐槽。</p>
             </div>
-            {userInfo.avatar_url === undefined ?
-                <Button color='#ffffff' style={{zIndex:20}} onClick={()=> setIsLoginFn()} ><TeamOutlined /> 登录后才可以留言噢</Button> :
+            {
                 <div className='inputDiv'>
                     <Avatar className='mssage-avatar' size={40} src={userInfo.avatar_url} />
                     <Input ref={value} value={valueInfo} onChange={(e) => setValueInfo(e.target.value)} onPressEnter={() => addMessageFn()} placeholder="说点什么吧，反正火不了呢..." variant="borderless" />
                 </div>}
             <MessageList  info={messageListInfo} />
-            {isLogin && <Login onSetIsLogin={setIsLoginFn}/>}
+            {/* {isLogin && <Login onSetIsLogin={setIsLoginFn}/>} */}
             <div style={{height:'250px'}}></div>
         </div>
     )

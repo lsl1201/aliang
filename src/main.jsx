@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')).render(
     {/* direction="rtl"  这是什么 */}
     <ConfigProvider  theme={{ token: { colorPrimary: '#00b96b',borderRadius:'#00b96b', } }}>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} future={{ v7_startTransition: true }} />
       </Provider>
     </ConfigProvider>
   </StrictMode>,

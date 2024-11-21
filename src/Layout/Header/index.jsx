@@ -97,7 +97,7 @@ const Header = () => {
                     <div ref={menuLineRef} className="header-line" />
                 </div>
             </Col>
-            <Col xs={2} sm={4} md={6} lg={9} xl={9} align="middle" justify="center">
+            {/* <Col xs={2} sm={4} md={6} lg={9} xl={9} align="middle" justify="center">
                 {url == undefined ? <TeamOutlined style={
                     {
                         fontSize: '20px',
@@ -129,10 +129,10 @@ const Header = () => {
                     {!showInfo && <Info msg={msg} onSetShowInfo={setShowInfo} className="info" />}
                 </div>
                 }
-            </Col>
+            </Col> */}
            
         </Row>
-         {isLogin && <Login onSetIsLogin={setIsLoginFn} />}
+         {/* {isLogin && <Login onSetIsLogin={setIsLoginFn} />} */}
         </div>
     )
 }

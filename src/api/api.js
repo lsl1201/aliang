@@ -3,6 +3,7 @@ import api from './request';
 
 export const getLocationInfo = () => api.get( '/blogApi/getLocationInfo');
 export const getGiteeCommitRecord = () => api.get( '/blogApi/getGiteeCommitRecord');
+export const getGithubCommitRecord = () => api.get("/blogApi/getGithubCommitRecord");
 export const getWorkExperience = () => api.get( '/blogApi/getWorkExperience');
 // 
 export const postFriendshipLinks = (data) => api({

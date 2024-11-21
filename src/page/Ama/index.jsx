@@ -1,6 +1,6 @@
 import './index.css'
 import Timeline from '../../components/Timeline';
-import { getGiteeCommitRecord } from '../../api/api'
+import { getGiteeCommitRecord,getGithubCommitRecord } from '../../api/api'
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Button, Form, Input, Avatar, message } from 'antd';
@@ -33,7 +33,8 @@ const Message = () => {
     useEffect(() => {
         async function getGiteeCommitRecordData() {
             try {
-                let data = await getGiteeCommitRecord();
+                // let data = await getGiteeCommitRecord();
+                let data = await getGithubCommitRecord();
                 const now = dayjs().valueOf();
 
                 const formattedData = data.map(item => {
