@@ -24,7 +24,7 @@ const Footer = () => {
     return (
         <div className='footer'>
             <div>
-                @2024 All rights reserved by <span>MOOM</span>. &nbsp;
+                @2024 All rights reserved by <span>MOON</span>. &nbsp;
                 <span>
                     &amp;
                     <a href="https://beian.miit.gov.cn" target="_blank">

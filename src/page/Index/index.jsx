@@ -42,7 +42,7 @@ const Index = () => {
 
                 <div>
                     <span>
-                        我是MooM，一个存活于互联网的边缘的搬砖人;<br />
+                        我是MOON，一个存活于互联网的边缘的搬砖人;<br />
                         我热爱开发，设计，创新，享受生活，以及在未知领域中探索。
                     </span>
                 </div>
@@ -72,10 +72,10 @@ const Index = () => {
                 </Flex>
             </div>
             <div className='indexAbout'>
-                <div className='aboutMoom'>
-                    <h3>Abuot MOOM</h3>
+                <div className='aboutMOON'>
+                    <h3>Abuot MOON</h3>
                     <span>
-                        MOOM这个怪兮兮的ID意为“月亮”，幕后工作者。
+                        MOON这个怪兮兮的ID意为“月亮”，幕后工作者。
                         <br />
                         95后前端工作者，当然因为长期缺乏与人的技术交流且几乎没换过公司，代码写得相当混乱。
                         <br />

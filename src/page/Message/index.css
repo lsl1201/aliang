@@ -1,74 +1,116 @@
-.title-h1{
-    font-size: 48px;
-    font-weight: 700;
+.title-h1 {
+  font-size: 48px;
+  font-weight: 700;
 }
-.massage{
-    padding-top: 200px;
-    margin-left: 80px;
-    height: 100%;
-    overflow: auto;
+.massage {
+  padding-top: 200px;
+  margin-left: 80px;
+  height: 100%;
+  overflow: auto;
 }
-.massage-title{
-    width: 500px;
+.massage-title {
+  width: 500px;
 }
-.inputDiv{
-    margin-top: 20px;
-    margin-left: 10px;
-    height: 80px;
-    width: 500px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display:flex;
-    align-items: center;
+.inputDiv {
+  margin-top: 20px;
+  margin-left: 10px;
+  height: 80px;
+  width: 500px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
 }
-.mssage-avatar{
-    width: 60px;
-    margin-left: 20px;
+.mssage-avatar {
+  width: 60px;
+  margin-left: 20px;
 }
-.inputDiv>input{
-    width: 90%;
-    height: 100%;
+.inputDiv > input {
+  width: 90%;
+  height: 100%;
 }
 
+.massage-info {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-.massage-list{
-    display: flex;
-    margin-top: 30px;
-    max-width: 500px;
-}
-.massage-list-avatar{
-    margin-right: 20px;
-}
-.massage-list-name{
-    font-size: 14px;
-    font-weight: 500;
-}
-.massage-list-time{
-    margin-left: 20px;
-    font-size: 12px;
-    font-weight: 400;
-    color: rgb(153, 153, 153);
-}
-.massage-list-message_content{
-    display: flex;
+.massage-list {
+    display: block !important;
     position: relative;
+  margin: 8px;
+  margin-top: 30px;
+  max-width: 500px;
+  width: 200px;
+  height: 130px;
+  border-radius: 10px;
+  overflow: hidden;
+  overflow-y: auto;
+  /* 允许 y 轴滚动 */
+  overflow-x: hidden;
+  /* 隐藏 x 轴滚动条 */
+  scrollbar-width: none;
+  /* 隐藏 Firefox 中的滚动条 */
+  -ms-overflow-style: none;
+  /* 隐藏 IE 和 Edge 中的滚动条 */
+  background-color: antiquewhite;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-.massage-list-line{
-    position:absolute;
-    top:30px;
-    left: -40px;
-    width: 2px;
-    height: 80%;
-    min-height: 15px;
-    background-color: #eee;
+
+.massage-list-name {
+  font-size: 14px;
+  font-weight: 500;
 }
-.massage-list:last-child .massage-list-message_conten .massage-list-line{
-    position:absolute;
-    top:30px;
-    left: -40px;
-    width: 0px;
-    height: 0;
-    min-height: 15px;
-    background-color: #eee;
+.massage-list-time {
+    padding-top: 5px;
+    width: 100%;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgb(153, 153, 153);
+}
+.massage-list-message_content {
+ 
+  padding: 5px;
+  overflow-y: auto;
+  /* 允许 y 轴滚动 */
+  overflow-x: hidden;
+  /* 隐藏 x 轴滚动条 */
+  scrollbar-width: none;
+  /* 隐藏 Firefox 中的滚动条 */
+  -ms-overflow-style: none;
+  /* 隐藏 IE 和 Edge 中的滚动条 */
+  
+}
+.massage-list-message_signature{
+   position: absolute;
+   bottom: 5px;
+   right: 5px;
+}
+.massage-list-line {
+  position: absolute;
+  top: 30px;
+  left: -40px;
+  width: 2px;
+  height: 80%;
+  min-height: 15px;
+  background-color: #eee;
+}
+.massage-list:last-child .massage-list-message_conten .massage-list-line {
+  position: absolute;
+  top: 30px;
+  left: -40px;
+  width: 0px;
+  height: 0;
+  min-height: 15px;
+  background-color: #eee;
+}
+
+
+.loading{
+    margin: 20px auto;
+    transform: translateX(-80px);
+    text-align: center;
+    height: 100px;
+    /* background-color:red; */
 }
