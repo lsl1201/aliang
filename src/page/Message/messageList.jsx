@@ -1,19 +1,14 @@
-import { Avatar } from 'antd';
-import './index.css'
-import dayjs from 'dayjs';
+import './index.css';
+import MessageDetails from './messageDetails.tsx';
+import { useState } from 'react';
+
 const MessageList = ({ info }) => {
+  const [open, setOpen] = useState(false);
+  const [messageDetailsInfo, setMessageDetailsInfo] = useState('');
+  const onClose = () => {
+    setOpen(false);
+  };
   // console.log(info)
-  // const LoginInformation = JSON.parse(localStorage.getItem('userInfo'))
-  // console.log(LoginInformation.id)
-  function setTime(time) {
-    // 获取当前时间戳
-    let now = dayjs().valueOf();
-    console.log(now);
-    if (now - time < 60 * 1000) {
-      return dayjs(time).format("HH:mm:ss");
-    }
-    // return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
-  }
   function hexToRgb(hex) {
     // 去掉 '#' 前缀，如果存在
     if (!hex) return { r: 0, g: 0, b: 0 };
@@ -64,20 +59,25 @@ const MessageList = ({ info }) => {
                 backgroundColor: item.color?item.color:"#fff",
                 color: isDarkColor(item.color) ? "#333" : "#fff",
               }}
+              onClick={() => {
+                setOpen(true);
+                setMessageDetailsInfo(item);
+              }}
             >
               <div className="massage-list-time">
                 <span>{item.create_time}</span>
               </div>
               <div className="massage-list-message_content">
-                {/* <div className="massage-list-line" /> */}
                 <span>{item.message_content}</span>
               </div>
               <div className="massage-list-message_signature">
-                {item.signature ? item.signature : "匿名"}
+                <span >{item.signature ? item.signature : "匿名"}</span>
+                
               </div>
             </div>
           </div>
         ))}
+        <MessageDetails open={open} close={onClose} info={messageDetailsInfo} isDarkColor={isDarkColor} />
     </div>
   );
 }

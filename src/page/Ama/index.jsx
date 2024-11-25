@@ -1,6 +1,6 @@
 import "./index.css";
 import Timeline from "../../components/Timeline";
-import { getGiteeCommitRecord, getGithubCommitRecord } from "../../api/api";
+import { getGithubCommitRecord } from "../../api/api";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Button, Form, Input, Avatar, message } from "antd";

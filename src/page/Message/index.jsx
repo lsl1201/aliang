@@ -1,5 +1,5 @@
 import "./index.css";
-import { Button, Input, Avatar, Spin,  } from "antd";
+import { Input, Spin, } from "antd";
 import { UngroupOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
@@ -15,18 +15,7 @@ const Message = () => {
   const { userInfo } = useSelector((state) => state.user);
   const colorPickerRef = useRef();
   const loadingRef = useRef(null);
-  async function getMassageList() {
-    let res = await getMassage({ page: num });
-    if (res.length > 0) {
-      setMessageListInfo((prevList) => [...prevList, ...res]);
-    } else {
-      setIsLoading(true);
-      return () => {
-        observer.unobserve(loadingRef.current);
-      };
-    }
-  }
-
+  const timer = useRef();
   const value = useRef(null);
   const signature = useRef(null);
   const [valueInfo, setValueInfo] = useState("");
@@ -61,6 +50,16 @@ const Message = () => {
   }
   useEffect(() => {
     if (num == 0) return;
+    async function getMassageList() {
+      let res = await getMassage({ page: num });
+      if (res.length > 0) {
+        console.log(res.length)
+        setMessageListInfo((prevList) => [...prevList, ...res]);
+      } else {
+        setIsLoading(true);
+        clearInterval(timer.current)
+      }
+    }
     getMassageList();
   }, [num]);
 
@@ -68,7 +67,11 @@ const Message = () => {
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !isLoading) {
-          setNum((num) => num + 1);
+          timer.current = setInterval(() => {
+            setNum((num) => num + 1);
+          }, 1000);
+        }else{
+          clearInterval(timer.current)
         }
       });
     };
@@ -76,29 +79,30 @@ const Message = () => {
     // 创建 IntersectionObserver 实例
     const observer = new IntersectionObserver(handleIntersection, {
       root: null, // 设置为 null 代表根为视口
-      threshold: 0.5, // 当元素至少 10% 可见时触发回调
+      threshold: 0.1, // 当元素至少 10% 可见时触发回调
     });
 
     // 开始观察目标元素
-    if (loadingRef.current) {
-      observer.observe(loadingRef.current);
+    const currentLoadingRef = loadingRef.current;
+    if (currentLoadingRef) {
+      observer.observe(currentLoadingRef);
     }
 
     // 组件卸载时停止观察
     return () => {
-      if (loadingRef.current) {
-        observer.unobserve(loadingRef.current);
+      if (currentLoadingRef) {
+        observer.unobserve(currentLoadingRef);
       }
     };
-  }, []);
+  }, [timer, isLoading]);
 
 
   return (
     <div className="massage">
       <div className="massage-title">
-                <span className='title-h1'>欢迎来到我的留言墙。</span>
-                <p>在这里，你可以留下你想对我说的话，或是你的建议，或是你的想法，或是你的批评，或是你的赞美，或是你的鼓励，或是你的吐槽。</p>
-            </div>
+        <span className='title-h1'>欢迎来到我的留言墙。</span>
+        <p>在这里，你可以留下你想对我说的话，或是你的建议，或是你的想法，或是你的批评，或是你的赞美，或是你的鼓励，或是你的吐槽。</p>
+      </div>
       {
         <div className="inputDiv">
           {/* <Avatar className='mssage-avatar' size={40} src={userInfo.avatar_url} /> */}

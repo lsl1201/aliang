@@ -37,8 +37,8 @@
 }
 
 .massage-list {
-    display: block !important;
-    position: relative;
+  display: block !important;
+  position: relative;
   margin: 8px;
   margin-top: 30px;
   max-width: 500px;
@@ -48,7 +48,7 @@
   overflow: hidden;
   overflow-y: auto;
   /* 允许 y 轴滚动 */
-  overflow-x: hidden;
+  overflow: hidden;
   /* 隐藏 x 轴滚动条 */
   scrollbar-width: none;
   /* 隐藏 Firefox 中的滚动条 */
@@ -70,7 +70,7 @@
   color: rgb(153, 153, 153);
 }
 .massage-list-message_content {
- 
+  height: 70px;
   padding: 5px;
   overflow-y: auto;
   /* 允许 y 轴滚动 */
@@ -84,8 +84,14 @@
 }
 .massage-list-message_signature{
    position: absolute;
-   bottom: 5px;
-   right: 5px;
+   bottom: 0;
+   right: 0;
+   height: 30px;
+   width: 100%;
+   text-align: right;
+   white-space: nowrap !important;
+   background-color: rgba(0, 0, 0, 0.1);
+   padding-right: 10px;
 }
 .massage-list-line {
   position: absolute;
