@@ -13,3 +13,10 @@ export const postFriendshipLinks = (data) => api({
 })
 
 export const getFriendshipLinks = () => api.get( '/blogApi/getFriendshipLinks');
+
+// 高德天气
+export const getWeather = (params) => api({
+    url: '/blogApi/getWeather', 
+    method: 'GET', 
+    params
+})

@@ -3,23 +3,28 @@ import axios from 'axios'
 import { useEffect, useState } from 'react';
 import './index.css'
 import { getLocationInfo } from '../../api/api'
+import { useDispatch } from 'react-redux';
+import { setLongitudeAndLatitude } from '../../store/modules/jwd';
 const Footer = () => {
     const [ipInfo, setIpInfo] = useState({})
     const [count, setCount] = useState(0)
+    const dispatch = useDispatch(); // 添加这行
     useEffect(() => {
         async function getMassage() {
             let res = await axios.get(
                 `https://api.ip.sb/geoip`
             );
-            // console.log(res)
             setIpInfo(res.data)
+            console.log(res.data)
+            const newLongitudeAndLatitude = `${res.data.longitude},${res.data.latitude}`;
+            dispatch(setLongitudeAndLatitude(newLongitudeAndLatitude)); // 调用 setLongitudeAndLatitude
             let { count } = await getLocationInfo()
             // console.log(count)
             count = (count / 1000).toFixed(2)
             setCount(count)
         }
         getMassage()
-    }, [])
+    }, [dispatch])
 
     return (
         <div className='footer'>

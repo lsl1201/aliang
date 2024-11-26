@@ -1,5 +1,5 @@
 import "./index.css";
-import { Input, Spin, } from "antd";
+import { Input, Spin,Button } from "antd";
 import { UngroupOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
@@ -114,7 +114,11 @@ const Message = () => {
             placeholder="说点什么吧，反正火不了呢..."
             variant="borderless"
           />
-          <ColorPicker ref={colorPickerRef} />
+          <div className="colorPicker">
+            <ColorPicker ref={colorPickerRef} />
+            <div className="send-btn" onClick={() => addMessageFn()} >发送</div>
+          </div>
+          
         </div>
       }
       {

@@ -1,20 +1,131 @@
 import './index.less'
 import { useEffect, useState } from "react";
-import { Flex, Card } from 'antd';
-import classNames from 'classnames';
+import { Avatar } from 'antd';
+// import classNames from 'classnames';
 import Timeline from '../../components/Timeline';
-import {getWorkExperience} from '@/api/api'
-
+import { getWorkExperience, getWeather } from '@/api/api'
+import { getMassage } from '@/api/message.js'
+import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+import { DisconnectOutlined  } from "@ant-design/icons";
 const Index = () => {
-    const [count, setCount] = useState(null)
     const [workExperience, setWorkExperience] = useState(null)
-    useEffect(()=>{
-        async function getWorkExperienceFn(){
+    const [messageInfo, setMessageInfo] = useState(null)
+    const longitudeAndLatitude = useSelector(state => state.jwdStore); // 获取经纬度
+    const [cityWeather, setCityWeather] = useState({})
+    const weatherBackground = {
+        '晴': 'linear-gradient(120deg, #f77062 0%, #fe5196 100%)',
+        '多云': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+        '阴': 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        '阵雨': 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)',
+        '雷阵雨': 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)',
+        '小雨': 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)',
+        '雷阵雨伴冰雹': 'linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%)',
+        '雨夹雪': 'linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)',
+    };
+    useEffect(() => {
+        async function getWorkExperienceFn() {
             let res = await getWorkExperience()
             setWorkExperience(res.reverse())
+            let res2 = await getMassage({ page: 1 })
+            setMessageInfo(res2)
         }
         getWorkExperienceFn()
-    },[])
+    }, [])
+    useEffect(() => {
+        async function getWeatherFn() {
+            let data = {
+                location: longitudeAndLatitude.longitudeAndLatitude
+            }
+            let res = await getWeather(data)
+            setCityWeather(res)
+        }
+        getWeatherFn()
+    }, [longitudeAndLatitude])
+
+    function hexToRgb(hex) {
+        // 去掉 '#' 前缀，如果存在
+        if (!hex) return { r: 0, g: 0, b: 0 };
+        hex = hex.replace(/^#/, "");
+
+        // 处理简写格式 #abc -> #aabbcc
+        if (hex.length === 3) {
+            hex = hex
+                .split("")
+                .map((char) => char + char)
+                .join("");
+        }
+
+        const bigint = parseInt(hex, 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+
+        return { r, g, b };
+    }
+
+    // 计算亮度 (Y)
+    function getLuminance({ r, g, b }) {
+        const a = [r, g, b].map((v) => {
+            v /= 255;
+            return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        });
+        return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+    }
+
+    // 判断颜色是否接近深色
+    function isDarkColor(hex) {
+        const rgb = hexToRgb(hex);
+        const luminance = getLuminance(rgb);
+
+        // 如果亮度低于 0.5，认为是深色
+        return luminance > 0.3;
+    }
+    let testData = [
+        {
+            isshow: true,
+            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
+            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
+            name: "在线抠图_背景去除",
+            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
+        },{
+            isshow: true,
+            address: 'https://color.oulu.me/',
+            name: "免费的180个渐变颜色",
+            description: '免费的180个美丽CSS3渐变样式和超清渐变图'
+        },{
+            isshow: true,
+            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
+            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
+            name: "在线抠图_背景去除",
+            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
+        },{
+            isshow: true,
+            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
+            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
+            name: "在线抠图_背景去除",
+            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
+        },{
+            isshow: true,
+            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
+            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
+            name: "在线抠图_背景去除",
+            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
+        },{
+            isshow: true,
+            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
+            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
+            name: "在线抠图_背景去除",
+            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
+        },{
+            isshow: true,
+            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
+            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
+            name: "在线抠图_背景去除",
+            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
+        },
+    ]
+
     return (
         <div>
             <div className="index">
@@ -47,29 +158,108 @@ const Index = () => {
                     </span>
                 </div>
             </div>
-            <div>
-                <Flex gap="middle" vertical>
-                    <Flex >
-                        {
-                            Array.from({
-                                length: 4,
-                            }).map((item, i) => (
-                                <Card
-                                    key={i}
-                                    className={classNames("baseStyle", count === i && 'baseStyle-hover')}
-                                    onMouseEnter={() => setCount(i)}
-                                    onMouseLeave={() => setCount(null)}
-                                    hoverable
-                                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+            <div className='banner'>
+                <div className='Weather'>
+                    {cityWeather.status == 1 ? (<div className='WeatherInfo' >
+                        <div className='Weathericon' style={{ background: weatherBackground[cityWeather.lives[0].weather] }}>
+                            {cityWeather.lives[0].weather}
+                        </div>
+                        <div>{cityWeather.lives[0].city}</div>
+                        <div>温度：{cityWeather.lives[0].temperature}℃</div>
+                        <div>风力：{cityWeather.lives[0].winddirection}风{cityWeather.lives[0].windpower}级</div>
+                        <div>更新时间：{cityWeather.lives[0].reporttime}</div>
+                    </div>) : (<div className='WeatherInfo' >获取天气失败：
+                        {cityWeather.info}</div>)}
+                </div>
+                <div className='bannerInfo'>
+                    <div className="text">
+                        <h2>时光留言墙，留下你的足迹</h2>
+                        <div>当下的心情，就让它留在当下吧～</div>
+                        <div>如您对留言墙感兴趣，欢迎来留言。</div>
+                    </div>
+                    <img className='bannerInfoImg' src="/src/assets/message.png" alt="" />
+                    <div className='bannerInfoButton' onClick={() => {
+                        window.location.href = '/message';
+                    }
+                    }>
+                        去留言
+                    </div>
+                </div>
+            </div>
+            <div className='links'>
+                <div>
+                    <span className='linksTitle'>实用工具</span><span>收集一些实用网站...</span>
+                </div>
+                <div className="linksContent">
+                    {testData &&
+                        testData.map((item, index) =>
+                            item.isshow == true ? (
+                                <div key={index}>
+                                    <Link
+                                        target="_blank"
+                                        to={item.address}
+                                        className="project-link"
+                                    >
+                                        <div className="links-item">
+                                            <Avatar
+                                                className="links-item-Avatar"
+                                                size={50}
+                                                icon={<DisconnectOutlined />}
+                                                src={item.avatar}
+                                            />
+                                            <div className="links-item-text">
+                                                <strong className="links-item-name">
+                                                    {item.name}
+                                                </strong>
+                                                <span className="links-item-description">
+                                                    {item.description}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            ) : null
+                        )}
+                </div>
+            </div>
+            
+            <div className='messageWall'>
+                <div>
+                    <span className='messageWallTitle'>留言墙</span><span>一面可以留言的墙...</span>
+                </div>
+                <div className="massage-info" >
+                    {messageInfo &&
+                        messageInfo.length > 0 &&
+                        messageInfo.map((item, index) => (
+                            <div key={index}>
+                                <div
+                                    className="massage-list"
+                                    style={{
+                                        backgroundColor: item.color ? item.color : "#fff",
+                                        color: isDarkColor(item.color) ? "#333" : "#fff",
+                                    }}
                                 >
-                                   <span>还没有好的idea展示</span>
-                                </Card>
-                                
-                            ))
-                        }
+                                    <div className="massage-list-time">
+                                        <span>{item.create_time}</span>
+                                    </div>
+                                    <div className="massage-list-message_content">
+                                        <span>{item.message_content}</span>
+                                    </div>
+                                    <div className="massage-list-message_signature">
+                                        <span >{item.signature ? item.signature : "匿名"}</span>
 
-                    </Flex>
-                </Flex>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                </div>
+                <div className='customdiv' onClick={() => {
+                    window.location.href = '/message';
+                }
+                }>
+                    进入留言墙
+                </div>
+
             </div>
             <div className='indexAbout'>
                 <div className='aboutMOON'>
@@ -83,11 +273,11 @@ const Index = () => {
                         <br />
                         目前有前端开发、NodeJs开发、UI/UX 设计、内容创作等经验
                         <br />
-                        性格以当今流行的MBTI<span style={{textDecoration:'line-through'}}>赛博占星</span>测试看属于ISFP-T。
+                        性格以当今流行的MBTI<span style={{ textDecoration: 'line-through' }}>赛博占星</span>测试看属于ISFP-T。
                     </span>
                 </div>
-                <div style={{display:'flex', justifyContent:'center', flexDirection: 'column',textAlign:'right',}}>
-                    <h3 style={{marginRight:'20px'}}>工作经历</h3>
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'right', }}>
+                    <h3 style={{ marginRight: '20px' }}>工作经历</h3>
                     <Timeline data={workExperience} />
                 </div>
 
