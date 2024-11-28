@@ -7,11 +7,13 @@ const Message = () => {
     const navigate = useNavigate()
     const [articleList, setArticleList] = useState([])
     function handleRouter(item) {
-        navigate(`/article/${item.title}`)
+        // console.log(item)
+        navigate(`/article/${item.id}`)
     }
     useEffect(() => {
         async function getArticleListFn() {
             let res = await getArticleList();
+            console.log(res)
             setArticleList(res)
         }
         getArticleListFn()

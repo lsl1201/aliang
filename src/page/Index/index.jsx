@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Avatar } from 'antd';
 // import classNames from 'classnames';
 import Timeline from '../../components/Timeline';
-import { getWorkExperience, getWeather } from '@/api/api'
+import { getWorkExperience, getWeather,getUtils } from '@/api/api'
 import { getMassage } from '@/api/message.js'
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ const Index = () => {
     const [messageInfo, setMessageInfo] = useState(null)
     const longitudeAndLatitude = useSelector(state => state.jwdStore); // 获取经纬度
     const [cityWeather, setCityWeather] = useState({})
+    const [utilsList, setUtilsList] = useState(null)
     const weatherBackground = {
         '晴': 'linear-gradient(120deg, #f77062 0%, #fe5196 100%)',
         '多云': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
@@ -29,6 +30,8 @@ const Index = () => {
             setWorkExperience(res.reverse())
             let res2 = await getMassage({ page: 1 })
             setMessageInfo(res2)
+            let res3 = await getUtils()
+            setUtilsList(res3)
         }
         getWorkExperienceFn()
     }, [])
@@ -81,51 +84,6 @@ const Index = () => {
         // 如果亮度低于 0.5，认为是深色
         return luminance > 0.3;
     }
-    let testData = [
-        {
-            isshow: true,
-            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
-            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
-            name: "在线抠图_背景去除",
-            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
-        },{
-            isshow: true,
-            address: 'https://color.oulu.me/',
-            name: "免费的180个渐变颜色",
-            description: '免费的180个美丽CSS3渐变样式和超清渐变图'
-        },{
-            isshow: true,
-            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
-            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
-            name: "在线抠图_背景去除",
-            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
-        },{
-            isshow: true,
-            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
-            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
-            name: "在线抠图_背景去除",
-            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
-        },{
-            isshow: true,
-            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
-            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
-            name: "在线抠图_背景去除",
-            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
-        },{
-            isshow: true,
-            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
-            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
-            name: "在线抠图_背景去除",
-            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
-        },{
-            isshow: true,
-            address: 'https://www.remove.bg/zh?ref=www.dashuwu.com',
-            avatar: 'https://www.dashuwu.com/wp-content/uploads/2024/08/35f24-www.remove.bg.png',
-            name: "在线抠图_背景去除",
-            description: '无论是想让图片背景变透明（PNG），还是给照片添加白色背景，你都可以用remove.bg来实现，还有更多功能等待你的发现。'
-        },
-    ]
-
     return (
         <div>
             <div className="index">
@@ -190,9 +148,9 @@ const Index = () => {
                 <div>
                     <span className='linksTitle'>实用工具</span><span>收集一些实用网站...</span>
                 </div>
-                <div className="linksContent">
-                    {testData &&
-                        testData.map((item, index) =>
+                <div className="linksContent2">
+                    {utilsList &&
+                        utilsList.map((item, index) =>
                             item.isshow == true ? (
                                 <div key={index}>
                                     <Link
@@ -200,7 +158,7 @@ const Index = () => {
                                         to={item.address}
                                         className="project-link"
                                     >
-                                        <div className="links-item">
+                                        <div className="links-item2">
                                             <Avatar
                                                 className="links-item-Avatar"
                                                 size={50}
@@ -263,7 +221,7 @@ const Index = () => {
             </div>
             <div className='indexAbout'>
                 <div className='aboutMOON'>
-                    <h3>Abuot MOON</h3>
+                    <h3 className='aboutMOONTitle'>Abuot MOON</h3>
                     <span>
                         MOON这个怪兮兮的ID意为“月亮”，幕后工作者。
                         <br />
@@ -284,6 +242,7 @@ const Index = () => {
             </div>
 
             {/* <div className='test'></div> */}
+            <div style={{ height: '100px' }}></div>
         </div>
     )
 }

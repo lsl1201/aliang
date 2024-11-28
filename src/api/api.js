@@ -20,3 +20,9 @@ export const getWeather = (params) => api({
     method: 'GET', 
     params
 })
+// getUtils
+export const getUtils = (params) => api({
+    url: '/blogApi/getUtils', 
+    method: 'GET', 
+    params
+})

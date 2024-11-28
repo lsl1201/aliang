@@ -6,30 +6,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { setActiveFn } from "@/store/modules/status"
 // import { Logout } from "@/store/modules/user"
 import { Avatar, Space } from 'antd';
-import { TeamOutlined ,UserOutlined} from '@ant-design/icons';
+import { UserOutlined} from '@ant-design/icons';
 import { useNavigate } from "react-router-dom"
 
 
-import Login from '../Login';
-import Info from '../Info';
 
 const Header = () => {
     const navigate = useNavigate()
-    const { userInfo } = useSelector(state => state.user)
-    const [isLogin, setIsLogin] = useState(false)
-    const [showInfo, setShowInfo] = useState(true)
     const { active } = useSelector((state) => state.status);
     const dispatch = useDispatch();
     const [avatarCount, setAvatarCount] = useState(64)
-    const [msg] = useState(userInfo)
-    const [url] = useState(userInfo.avatar_url)
 
-    function setIsLoginFn() {
-        setIsLogin(!isLogin)
-    }
-    function viewInfo() {
-        setShowInfo(!showInfo)
-    }
     function setActive1(index) {
         dispatch(setActiveFn(index.target.dataset.index))
     }
@@ -88,7 +75,7 @@ const Header = () => {
             <Col xs={20} sm={16} md={10} lg={6} xl={6}>
                 <div className='header-menu'>
                     <ul onClick={setActive1}>
-                        <li data-index='/' onClick={() => navigate('/')} className={classNames("header-menu-item", active === "/" && "active")} >首页</li>
+                        <li data-index='/' onClick={() => navigate('/')} className={classNames("header-menu-item", active === "/" || active === '/undefined'&& "active")} >首页</li>
                         <li data-index='/article' onClick={() => navigate('/article')} className={classNames("header-menu-item", active === "/article" && "active")} >博客</li>
                         <li data-index='/project' onClick={() => navigate('/project')} className={classNames("header-menu-item", active === "/project" && "active")} >项目</li>
                         <li data-index='/message' onClick={() => navigate('/message')} className={classNames("header-menu-item", active === "/message" && "active")} >留言板</li>

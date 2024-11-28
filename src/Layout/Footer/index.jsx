@@ -15,7 +15,6 @@ const Footer = () => {
                 `https://api.ip.sb/geoip`
             );
             setIpInfo(res.data)
-            console.log(res.data)
             const newLongitudeAndLatitude = `${res.data.longitude},${res.data.latitude}`;
             dispatch(setLongitudeAndLatitude(newLongitudeAndLatitude)); // 调用 setLongitudeAndLatitude
             let { count } = await getLocationInfo()
