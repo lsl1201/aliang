@@ -1,21 +1,18 @@
 import { getArticleContent } from "@/api/article";
 import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw"; // 引入 rehype-raw 插件
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styles from "../index.module.less";
-import "./index.less";
 import { Affix, Button } from "antd";
 import { ArrowLeftOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
-import { MdPreview, MdCatalog } from "md-editor-rt";
-import "md-editor-rt/lib/style.css";
-const editorId = "article-editor";
 const ArticleContent = () => {
-  const { id, fileName } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const goTop = useRef(null);
-  const [state, setstate] = useState({
-    text: "",
-    scrollElement: document.documentElement,
-  });
 
   const handleBack = () => {
     navigate(-1);
@@ -32,22 +29,15 @@ const ArticleContent = () => {
   });
 
   // 获取url参数
-  const [article, setArticle] = useState({ content: "" });
+  const [article, setArticle] = useState({ fileName: "", content: "" });
   useEffect(() => {
     window.scrollTo(0, 0);
     async function getArticleFn() {
       let res = await getArticleContent(id);
       setArticle(res);
-      setstate({
-        text: res.content,
-        scrollElement: document.documentElement,
-      });
     }
     getArticleFn();
   }, [id]);
-  useEffect(() => {
-    console.log(article);
-  }, [article]);
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY || document.documentElement.scrollTop;
@@ -76,9 +66,6 @@ const ArticleContent = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  function getCatalog(catalog) {
-    console.log(catalog);
-  }
   return (
     <div className={styles.articleContent}>
       <Affix offsetTop={top} ref={goTop} style={topStyles}>
@@ -103,12 +90,32 @@ const ArticleContent = () => {
           onClick={handleBack}
         />
       </Affix>
-      <h2 style={{ marginLeft: "20px" }}>{fileName}</h2>
-      <MdPreview id={editorId} value={state.text} toggleCatalog={true} />
-      <MdCatalog
-        class="Catalog"
-        editorId={editorId}
-        scrollElement={state.scrollElement}
+      <div className={styles.articleContentTitle}>{article.fileName}</div>
+      <ReactMarkdown
+        // eslint-disable-next-line react/no-children-prop
+        children={article.content}
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]} // 使用 rehypeRaw 插件来渲染 HTML
+        components={{
+          code(props) {
+            const { children, className, node, ...rest } = props;
+            const match = /language-(\w+)/.exec(className || "");
+            return match ? (
+              <SyntaxHighlighter
+                {...rest}
+                PreTag="div"
+                // eslint-disable-next-line react/no-children-prop
+                children={String(children).replace(/\n$/, "")}
+                language={match[1]}
+                style={dark}
+              />
+            ) : (
+              <code {...rest} className={className}>
+                {children}
+              </code>
+            );
+          },
+        }}
       />
     </div>
   );
