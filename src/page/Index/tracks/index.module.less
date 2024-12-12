@@ -1,0 +1,36 @@
+.chartbox {
+  width: 100%;
+  height: 900px;
+  box-sizing: border-box;
+  border-radius: 500px;
+  // overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  /* 为伪元素定位 */
+}
+
+@media screen and (max-width: 1070px) {
+  .chartbox {
+    height: 700px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .chartbox {
+    height: 600px;
+  }
+}
+
+.chartbox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 500px;
+  background: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  /* 渐变色 */
+  pointer-events: none;
+  /* 禁止伪元素影响事件 */
+}

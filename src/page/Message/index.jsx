@@ -1,5 +1,5 @@
 import "./index.css";
-import { Input, Spin,Button } from "antd";
+import { Input, Spin, Button } from "antd";
 import { UngroupOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
@@ -53,11 +53,11 @@ const Message = () => {
     async function getMassageList() {
       let res = await getMassage({ page: num });
       if (res.length > 0) {
-        console.log(res.length)
+        console.log(res.length);
         setMessageListInfo((prevList) => [...prevList, ...res]);
       } else {
         setIsLoading(true);
-        clearInterval(timer.current)
+        clearInterval(timer.current);
       }
     }
     getMassageList();
@@ -70,8 +70,8 @@ const Message = () => {
           timer.current = setInterval(() => {
             setNum((num) => num + 1);
           }, 1000);
-        }else{
-          clearInterval(timer.current)
+        } else {
+          clearInterval(timer.current);
         }
       });
     };
@@ -96,12 +96,13 @@ const Message = () => {
     };
   }, [timer, isLoading]);
 
-
   return (
     <div className="massage">
       <div className="massage-title">
-        <span className='title-h1'>欢迎来到我的留言墙。</span>
-        <p>在这里，你可以留下你想对我说的话，或是你的建议，或是你的想法，或是你的批评，或是你的赞美，或是你的鼓励，或是你的吐槽。</p>
+        <span className="title-h1">欢迎来到我的留言墙。</span>
+        <p>
+          在这里，你可以留下你想对我说的话，或是你的建议，或是你的想法，或是你的批评，或是你的赞美，或是你的鼓励，或是你的吐槽。
+        </p>
       </div>
       {
         <div className="inputDiv">
@@ -116,9 +117,10 @@ const Message = () => {
           />
           <div className="colorPicker">
             <ColorPicker ref={colorPickerRef} />
-            <div className="send-btn" onClick={() => addMessageFn()} >发送</div>
+            <div className="send-btn" onClick={() => addMessageFn()}>
+              发送
+            </div>
           </div>
-          
         </div>
       }
       {

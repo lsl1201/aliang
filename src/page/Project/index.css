@@ -21,3 +21,8 @@
 .description{
     color: #999;
 }
+::deep(.ss-dev-only-do-not-override-s7suny,.ant-row){
+    display: flex;
+    flex-wrap: wrap !important;
+    min-width: 700px;
+}

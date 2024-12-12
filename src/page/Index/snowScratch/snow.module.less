@@ -1,0 +1,57 @@
+.c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  position: relative;
+}
+
+@colors: rgb(101, 163, 13);
+
+.card {
+  @snow-size: 48px;
+  // height: 580px;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  align-content: center;
+  filter: blur(15px) contrast(30);
+
+  .snow {
+    position: relative;
+    width: @snow-size;
+    height: @snow-size;
+    border-radius: 100%;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      width: inherit;
+      height: inherit;
+      background: #333;
+      transition: 50s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    &:hover::after {
+      transform: scale(0);
+      transition-duration: 0.3s;
+    }
+  }
+}
+
+.pStyle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+  color: #333;
+  font-family: Lato, sans-serif;
+  font-size: 4em;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  transform: translate(-47%, -160%);
+  pointer-events: none;
+  filter: blur(1px) contrast(20);
+}

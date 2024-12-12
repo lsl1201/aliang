@@ -1,37 +1,45 @@
-.index{
+.index {
     margin-left: 80px;
     padding-top: 190px;
 
 }
-.title{
+
+.title {
     font-size: 40px;
     font-weight: bold;
 }
+
 .Designer {
-    position: relative; /* 使伪元素相对于这个元素定位 */
+    position: relative;
+    /* 使伪元素相对于这个元素定位 */
     border: 1px solid rgb(101, 163, 13);
-    padding: 5px; /* 添加一些内边距以避免内容被伪元素覆盖 */
-    background-color: rgba(0, 0, 0,.07);
+    padding: 5px;
+    /* 添加一些内边距以避免内容被伪元素覆盖 */
+    background-color: rgba(0, 0, 0, .07);
 }
+
 .Designer:hover {
-    text-decoration:  line-through;
+    text-decoration: line-through;
     border-style: dashed solid;
 }
+
 .Designer::before,
 .Designer::after,
-.Designer > .corner::before,
-.Designer > .corner::after 
-{
+.Designer>.corner::before,
+.Designer>.corner::after {
     content: '';
     position: absolute;
-    width: 10px; /* 正方形的宽度 */
-    height: 10px; /* 正方形的高度 */
-    background-color: #fff; /* 正方形的颜色 */
+    width: 10px;
+    /* 正方形的宽度 */
+    height: 10px;
+    /* 正方形的高度 */
+    background-color: #fff;
+    /* 正方形的颜色 */
     border: 1px solid rgb(101, 163, 13);
 }
 
 .Designer::before {
-    top: -5px; 
+    top: -5px;
     left: -5px;
 }
 
@@ -39,43 +47,49 @@
     top: -5px;
     right: -5px;
 }
-.corner{
+
+.corner {
     position: relative;
     width: 100%;
 }
-.Designer > .corner::before {
+
+.Designer>.corner::before {
     bottom: -10px;
     left: -10px;
 }
 
-.Designer > .corner::after {
+.Designer>.corner::after {
     bottom: -10px;
     right: -130px;
 }
 
-.Details{
-    position: relative ;
+.Details {
+    position: relative;
 }
-.DetailsIcon{
+
+.DetailsIcon {
     position: absolute;
-    transform-origin: 50% 42%; 
-    transition: transform 0.3s ease; /* 添加旋转动画的过渡效果 */
+    transform-origin: 50% 42%;
+    transition: transform 0.3s ease;
+    /* 添加旋转动画的过渡效果 */
 }
-.DetailsIcon:hover{
+
+.DetailsIcon:hover {
     transform: rotate(180deg);
 }
-.DetailsText{
+
+.DetailsText {
     margin-left: 50px;
 }
 
 
-.test{
+.test {
     height: 1000px;
     width: 100px;
     background-color: red;
 }
 
-.baseStyle{
+.baseStyle {
     margin: 20px;
     border-radius: 20px;
     overflow: hidden;
@@ -84,27 +98,28 @@
 }
 
 
-.indexAbout{
+.indexAbout {
     margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
 
-.aboutMOON{
+.aboutMOON {
     margin-left: 80px;
 }
 
-.messageWall{
+.messageWall {
     margin: 60px;
 }
-.messageWallTitle{
+
+.messageWallTitle {
     font-size: 30px;
     font-weight: bold;
     padding-right: 20px;
 }
 
-.customdiv{
+.customdiv {
     width: 150px;
     height: 50px;
     margin: 40px auto 0;
@@ -116,14 +131,18 @@
     border: 1px solid #333;
     transition: all 0.3s ease;
 }
-.customdiv:hover{
+
+.customdiv:hover {
     background-color: rgba(0, 0, 0, 0.1);
     border: 1px solid #666;
     cursor: pointer;
 }
+
 .custom-button {
-    background-color: #f6f4ef; /* 按钮的初始背景颜色 */
-    color: #2a2a2a; /* 按钮文本颜色 */
+    background-color: #f6f4ef;
+    /* 按钮的初始背景颜色 */
+    color: #2a2a2a;
+    /* 按钮文本颜色 */
     border: 2px solid #999;
     padding: 10px 20px;
     margin: 0 auto;
@@ -132,20 +151,27 @@
     font-size: 18px;
     cursor: pointer;
     outline: none;
-    transition: all 0.3s ease; /* 添加动画效果 */
-  }
-  
-  .custom-button.hover {
-    background-color: #2a2a2a; /* 鼠标悬停时背景颜色 */
-    color: #f6f4ef; /* 鼠标悬停时文本颜色 */
-    transform: scale(1.05); /* 鼠标悬停时放大效果 */
-  }
-  .WeatherInfo{
+    transition: all 0.3s ease;
+    /* 添加动画效果 */
+}
+
+.custom-button.hover {
+    background-color: #2a2a2a;
+    /* 鼠标悬停时背景颜色 */
+    color: #f6f4ef;
+    /* 鼠标悬停时文本颜色 */
+    transform: scale(1.05);
+    /* 鼠标悬停时放大效果 */
+}
+
+.WeatherInfo {
     width: 350px;
     height: 200px;
     margin-left: 30px;
-    border-radius: 20px; /* 圆角效果 */
-    padding: 20px;       /* 内边距 */
+    border-radius: 20px;
+    /* 圆角效果 */
+    padding: 20px;
+    /* 内边距 */
     background: linear-gradient(120deg, #f4f7e4 0%, #f5e5f8 100%);
     font-size: 20px;
     font-weight: 400;
@@ -154,15 +180,16 @@
     flex-direction: column;
     justify-content: space-evenly;
     position: relative;
-  }
-  .Weathericon{
+}
+
+.Weathericon {
     position: absolute;
     top: 10px;
     right: 10px;
-    min-width:100px;
+    min-width: 100px;
     height: 100px;
     border-radius: 100px;
-    box-shadow: -10px 15px 30px  rgba(0, 0, 0, 0.3);
+    box-shadow: -10px 15px 30px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
     background-color: #fff;
     display: flex;
@@ -173,17 +200,18 @@
     color: #f6f4ef;
     padding: 20px;
     text-shadow: 0 0 5px rgba(101, 163, 13, 1);
-  }
-  .banner{
+}
+
+.banner {
     display: flex;
     margin-top: 40px;
-  }
+}
 
-.bannerInfo{
+.bannerInfo {
     width: 100%;
     min-width: 500px;
     height: 200px;
-    border-radius: 20px; 
+    border-radius: 20px;
     margin: 0 20px;
     // background-color: skyblue;
     position: relative;
@@ -196,7 +224,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.bannerInfoButton{
+.bannerInfoButton {
     position: absolute;
     left: 50px;
     bottom: 30px;
@@ -210,15 +238,18 @@
     border: 1px solid #333;
     transition: all 0.3s ease;
 }
-.bannerInfoButton:hover{
+
+.bannerInfoButton:hover {
     background-color: rgba(0, 0, 0, 0.1);
     border: 1px solid #666;
     cursor: pointer;
 }
-.text{
+
+.text {
     width: 50%;
 }
-.bannerInfoImg{
+
+.bannerInfoImg {
     position: absolute;
     right: 0;
     top: 0;
@@ -231,32 +262,36 @@
 }
 
 @media screen and (max-width: 900px) {
-    .banner{
+    .banner {
         display: block;
-      }
-      .bannerInfo{
+    }
+
+    .bannerInfo {
         width: 80%;
         min-width: 390px;
         margin: 30px;
-      }
-  }
+    }
+}
 
 
-  .links{
+.links {
     margin: 60px 40px;
-  }
-  .linksTitle{
+}
+
+.linksTitle {
     font-size: 30px;
     font-weight: bold;
     margin-left: 20px;
     padding-right: 20px;
-  }
-  .linksContent2{
+}
+
+.linksContent2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-  .links-item2{
+}
+
+.links-item2 {
     margin-top: 20px;
     height: 80px;
     background-color: rgb(255, 255, 255);
@@ -267,11 +302,27 @@
     margin-left: 20px;
     transition: box-shadow 0.3s ease-in-out;
     padding: 10px;
-  }
+}
 
 
-  .aboutMOONTitle{
+.aboutMOONTitle {
     font-size: 30px;
     font-weight: bold;
     padding-right: 20px;
-  }
+}
+
+.Skills {
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 80px;
+}
+
+.gradient-text {
+    font-weight: bold;
+    background: linear-gradient(50deg, #ff6a00, rgb(101, 163, 13));
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* 支持 Chrome, Safari, Opera */
+    -webkit-text-fill-color: transparent;
+    /* 透明的字体颜色 */
+}

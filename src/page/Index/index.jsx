@@ -3,11 +3,16 @@ import { useEffect, useState } from "react";
 import { Avatar } from 'antd';
 // import classNames from 'classnames';
 import Timeline from '../../components/Timeline';
-import { getWorkExperience, getWeather,getUtils } from '@/api/api'
+import { getWorkExperience, getWeather, getUtils } from '@/api/api'
 import { getMassage } from '@/api/message.js'
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import { DisconnectOutlined  } from "@ant-design/icons";
+import { DisconnectOutlined } from "@ant-design/icons";
+import Force from './force/index';
+import Tracks from './tracks';
+import TextComponent from './text';
+import Social from './social';
+import SnowScratch from './snowScratch';
 const Index = () => {
     const [workExperience, setWorkExperience] = useState(null)
     const [messageInfo, setMessageInfo] = useState(null)
@@ -116,6 +121,9 @@ const Index = () => {
                     </span>
                 </div>
             </div>
+            <div>
+                <Social />
+            </div>
             <div className='banner'>
                 <div className='Weather'>
                     {cityWeather.status == 1 ? (<div className='WeatherInfo' >
@@ -180,7 +188,7 @@ const Index = () => {
                         )}
                 </div>
             </div>
-            
+
             <div className='messageWall'>
                 <div>
                     <span className='messageWallTitle'>留言墙</span><span>一面可以留言的墙...</span>
@@ -231,7 +239,7 @@ const Index = () => {
                         <br />
                         目前有前端开发、NodeJs开发、UI/UX 设计、内容创作等经验
                         <br />
-                        性格以当今流行的MBTI<span style={{ textDecoration: 'line-through' }}>赛博占星</span>测试看属于ISFP-T。
+                        性格以当今流行的MBTI<span style={{ textDecoration: 'line-through' }}>赛博占星</span>测试看属于<span className='gradient-text '>ISFP-T</span>。
                     </span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'right', }}>
@@ -240,9 +248,28 @@ const Index = () => {
                 </div>
 
             </div>
+            <div>
+                <h3 className='Skills'>My Skills</h3>
+                <Force />
+            </div>
+            <div>
+                <h3 className='Skills'>My Tracks</h3>
+                <Tracks />
+            </div>
+            <div style={{ marginTop: '300px' }}>
+                <h3 className='Skills'></h3>
+                <TextComponent />
+            </div>
+            <div style={{ height: '100px' }}></div>
+            <div >
+                <SnowScratch />
+            </div>
+
 
             {/* <div className='test'></div> */}
-            <div style={{ height: '100px' }}></div>
+            <div style={{ height: '100px', textAlign: 'center', lineHeight: '100px' }}>
+                --------- 到达了世界尽头 ----------
+            </div>
         </div>
     )
 }
